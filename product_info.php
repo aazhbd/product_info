@@ -25,12 +25,6 @@ class Products extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Create all tables'
-            )
-            ->addOption(
-                'import',
-                null,
-                InputOption::VALUE_NONE,
-                'Import data from file'
             );
     }
 
@@ -72,10 +66,9 @@ class Products extends Command
                         $product_info['price'] = trim($p[1]);
                         $product_info['quantity'] = trim($p[2]);
 
-                        if(intval($product_info['quantity']) > 0) {
+                        if (intval($product_info['quantity']) > 0) {
                             $total_sellable++;
-                        }
-                        else {
+                        } else {
                             $total_non_sellable++;
                         }
 
@@ -107,24 +100,22 @@ class Products extends Command
                 print("Total PRODUCT type items : " . $total_product_count . "\n");
                 print("Total BUNDLE type items : " . $total_bundle_count . "\n");
                 print("Total Invalid Bundles : " . $data->countInvalidBundles($data) . "\n");
-            }
-            elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
+            } elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
                 $product_details = $data->getProductBySKU($data, $psku);
 
                 print("------------+----------------------+--------\n");
                 print("        SKU |                 Name |  Price\n");
                 print("------------+----------------------+--------\n");
-                if(!$product_details) {
+                if (!$product_details) {
                     print("        INVALID PRODUCT SELECTED\n");
-                }
-                else {
-                    printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'], $product_details['price']);
+                } else {
+                    printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'],
+                        $product_details['price']);
                 }
                 print("------------+----------------------+--------\n");
 
-            }
-            elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
+            } elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];
                 $bundle_details = $data->getBundleBySKU($data, $bsku);
 
@@ -133,13 +124,12 @@ class Products extends Command
                 print("------------+----------------------+--------\n");
                 print("        SKU |                 Name |  Price\n");
                 print("------------+----------------------+--------\n");
-                if(!$product_details) {
+                if (!$product_details) {
                     print("        INVALID PRODUCT SELECTED\n");
-                }
-                else {
+                } else {
                     printf("%11s | %20s | %7s\n", $bundle_details['bsku'], " ", " ");
                     $psum = 0;
-                    foreach($product_details as $pd) {
+                    foreach ($product_details as $pd) {
                         $pdetails = $data->getProductById($data, $pd['product_id']);
                         printf("%11s | %20s | %7s\n", " ", $pdetails['pname'], " ");
                         $psum += $pdetails['price'];

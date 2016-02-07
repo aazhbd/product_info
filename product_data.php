@@ -8,6 +8,9 @@ class ProductData
 
     private $message;
 
+    /**
+     * ProductData constructor.
+     */
     function __construct()
     {
         $this->message = "";
@@ -21,6 +24,11 @@ class ProductData
         }
     }
 
+    /**
+     * @param $app
+     * @param $product
+     * @return bool
+     */
     function addProduct($app, $product)
     {
         if (empty($product)) {
@@ -38,6 +46,11 @@ class ProductData
         return $executed;
     }
 
+    /**
+     * @param $app
+     * @param $psku
+     * @return bool
+     */
     function getProductBySKU($app, $psku)
     {
         if (!isset($psku)) {
@@ -56,7 +69,13 @@ class ProductData
         return $query;
     }
 
-    function getProductById($app, $pid) {
+    /**
+     * @param $app
+     * @param $pid
+     * @return bool
+     */
+    function getProductById($app, $pid)
+    {
         if (!isset($pid)) {
             return false;
         }
@@ -73,6 +92,11 @@ class ProductData
         return $query;
     }
 
+    /**
+     * @param $app
+     * @param $bsku
+     * @return bool
+     */
     function getBundleBySKU($app, $bsku)
     {
         if (!isset($bsku)) {
@@ -91,7 +115,12 @@ class ProductData
         return $query;
     }
 
-    function countInvalidBundles($app) {
+    /**
+     * @param $app
+     * @return bool
+     */
+    function countInvalidBundles($app)
+    {
         try {
             $query = $app->getDataManager()->from("products")
                 ->leftJoin('bundle_product ON products.id = bundle_product.product_id')
@@ -107,6 +136,12 @@ class ProductData
         return $query[0]["count_invalid_bundle"];
     }
 
+    /**
+     * @param $app
+     * @param $bundle
+     * @param $pskus
+     * @return bool
+     */
     function addBundle($app, $bundle, $pskus)
     {
         if (empty($bundle)) {
@@ -138,6 +173,11 @@ class ProductData
         return $executed;
     }
 
+    /**
+     * @param $app
+     * @param $bundle_id
+     * @return bool
+     */
     function getProductsByBundleId($app, $bundle_id)
     {
         if (!isset($bundle_id)) {
