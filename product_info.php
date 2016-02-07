@@ -150,7 +150,7 @@ class Products extends Command
             }
 
         } else {
-            $text = 'Add arguments';
+            $text = 'No procedure.';
         }
 
         $output->writeln($text);
