@@ -2,11 +2,12 @@
 
 CLI tool for product information management
 
-## Requirement
+### Requirement
 
 PHP 5.6
+Composer v1.0
 
-## Usage
+### Usage
 
 - To initialize the project, the packages have to be installed,
 
@@ -30,6 +31,10 @@ $ php app.php product import <file_path>
 
 ```
 $ php app.php product showProductWithSKU <product_SKU>
+
+or
+
+$ php app.php product showProductWithSKU <product_ID>
 ```
 
  - To view bundle details,
@@ -39,7 +44,7 @@ $ php app.php product showBundleWithSKU <bundle_SKU>
 ```
 
 
-## Examples
+### Examples
 
 ```
 $ php app.php product --createtables
@@ -68,6 +73,16 @@ $ php app.php product showProductWithSKU PRD0002
         INVALID PRODUCT SELECTED
 ------------+----------------------+--------
 Operation: showProductWithSKU
+```
+
+```
+$ php app.php product showProductWithID 6
+------------+----------------------+--------
+        SKU |                 Name |  Price
+------------+----------------------+--------
+   PRD00009 |          Windy shirt |   20.99
+------------+----------------------+--------
+Operation: showProductWithID
 ```
 
 
