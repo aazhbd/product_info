@@ -8,6 +8,12 @@ PHP 5.6
 
 ## Usage
 
+To initialize the project, the packages have to be installed,
+
+```
+$ composer install
+```
+
 For simplicity, SQLite3 connection is set. To Creating database tables,
 
 ```
