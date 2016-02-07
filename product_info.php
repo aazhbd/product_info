@@ -55,6 +55,8 @@ class Products extends Command
                 $pi = 0;
                 $bi = 0;
 
+                $total_items = 0;
+
                 while (($line = fgets($handle)) !== false) {
                     $row = explode("|", $line);
 
@@ -74,7 +76,8 @@ class Products extends Command
                         $bundles[$bi] = $bundle_info;
                         $bi++;
                     }
-                    //$output->writeln($line);
+
+                    $total_items++;
                 }
 
                 for ($i = 0; $i < count($products); $i++) {
@@ -84,6 +87,8 @@ class Products extends Command
                 foreach ($bundles as $bundle) {
                     $data->addBundle($data, $bundle['info'], $bundle['products']);
                 }
+
+                print("Total read items : " . $total_items . "\n");
             }
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
