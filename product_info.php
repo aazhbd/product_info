@@ -105,16 +105,7 @@ class Products extends Command
                 $psku = $run[1];
                 $product_details = $data->getProductBySKU($data, $psku);
 
-                print("------------+----------------------+--------\n");
-                print("        SKU |                 Name |  Price\n");
-                print("------------+----------------------+--------\n");
-                if (!$product_details) {
-                    print("        INVALID PRODUCT SELECTED\n");
-                } else {
-                    printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'],
-                        $product_details['price']);
-                }
-                print("------------+----------------------+--------\n");
+                $this->printProduct($product_details);
 
             } elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];
@@ -122,22 +113,7 @@ class Products extends Command
 
                 $product_details = $data->getProductsByBundleId($data, $bundle_details['id']);
 
-                print("------------+----------------------+--------\n");
-                print("        SKU |                 Name |  Price\n");
-                print("------------+----------------------+--------\n");
-                if (!$product_details) {
-                    print("        INVALID PRODUCT SELECTED\n");
-                } else {
-                    printf("%11s | %20s | %7s\n", $bundle_details['bsku'], " ", " ");
-                    $psum = 0;
-                    foreach ($product_details as $pd) {
-                        $pdetails = $data->getProductById($data, $pd['product_id']);
-                        printf("%11s | %20s | %7s\n", " ", $pdetails['pname'], " ");
-                        $psum += $pdetails['price'];
-                    }
-                    printf("%11s | %20s | %7s\n", " ", " ", $psum);
-                }
-                print("------------+----------------------+--------\n");
+                $this->printBundle($data, $bundle_details, $product_details);
             }
 
         } else {
@@ -145,5 +121,47 @@ class Products extends Command
         }
 
         $output->writeln($text);
+    }
+
+    /**
+     * @param $data
+     * @param $bundle_details
+     * @param $product_details
+     */
+    function printBundle($data, $bundle_details, $product_details)
+    {
+        print("------------+----------------------+--------\n");
+        print("        SKU |                 Name |  Price\n");
+        print("------------+----------------------+--------\n");
+        if (!$product_details) {
+            print("        INVALID PRODUCT SELECTED\n");
+        } else {
+            printf("%11s | %20s | %7s\n", $bundle_details['bsku'], " ", " ");
+            $psum = 0;
+            foreach ($product_details as $pd) {
+                $pdetails = $data->getProductById($data, $pd['product_id']);
+                printf("%11s | %20s | %7s\n", " ", $pdetails['pname'], " ");
+                $psum += $pdetails['price'];
+            }
+            printf("%11s | %20s | %7s\n", " ", " ", $psum);
+        }
+        print("------------+----------------------+--------\n");
+    }
+
+    /**
+     * @param $product_details
+     */
+    function printProduct($product_details)
+    {
+        print("------------+----------------------+--------\n");
+        print("        SKU |                 Name |  Price\n");
+        print("------------+----------------------+--------\n");
+        if (!$product_details) {
+            print("        INVALID PRODUCT SELECTED\n");
+        } else {
+            printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'],
+                $product_details['price']);
+        }
+        print("------------+----------------------+--------\n");
     }
 }
