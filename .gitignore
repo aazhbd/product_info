@@ -1,0 +1,7 @@
+.idea
+composer.lock
+composer.phar
+vendor
+.vscode
+products.db
+/nbproject/private/

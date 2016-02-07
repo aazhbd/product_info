@@ -1,0 +1,22 @@
+{
+  "name": "aazhbd/consoleapp",
+  "description": "Commandline app",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4.0",
+    "symfony/http-foundation": "~3.0",
+    "lichtner/fluentpdo": "dev-master",
+    "symfony/console": "*"
+  },
+  "config": {
+    "component-dir": "vendor/assets"
+  },
+  "authors": [
+    {
+      "name": "Abdullah Al Zakir Hossain",
+      "email": "aazhbd@yahoo.com",
+      "homepage": "http://articulatelogic.com/downloads",
+      "role": "Developer"
+    }
+  ]
+}
