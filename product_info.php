@@ -88,7 +88,16 @@ class Products extends Command
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
                 $product_details = $data->getProductBySKU($data, $psku);
-                var_dump($product_details);
+                print("------------+----------------------+--------\n");
+                print("        SKU |                 Name |  Price\n");
+                print("------------+----------------------+--------\n");
+                if(!$product_details) {
+                    print("        INVALID PRODUCT SELECTED\n");
+                }
+                else {
+                    printf("%11s | %20s | %7s\n", $product_details['psku'],$product_details['pname'],$product_details['price']);
+                }
+                print("------------+----------------------+--------\n");
             }
             elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];
