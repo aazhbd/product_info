@@ -84,10 +84,16 @@ class Products extends Command
                 foreach ($bundles as $bundle) {
                     $data->addBundle($data, $bundle['info'], $bundle['products']);
                 }
-            } elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
+            }
+            elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
                 $product_details = $data->getProductBySKU($data, $psku);
                 var_dump($product_details);
+            }
+            elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
+                $bsku = $run[1];
+                $bundle_details = $data->getBundleBySKU($data, $bsku);
+                var_dump($bundle_details);
             }
 
         } else {

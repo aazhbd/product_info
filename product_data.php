@@ -74,11 +74,6 @@ class ProductData
         return $query;
     }
 
-    function addPrice($price, $product)
-    {
-
-    }
-
     function addBundle($app, $bundle, $pskus)
     {
         if (empty($bundle)) {
