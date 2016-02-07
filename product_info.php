@@ -49,15 +49,13 @@ class Products extends Command
         if (isset($run[0])) {
             $text = 'Operation: ' . $run[0];
 
-            if ($run[0] == "import" && isset($run[1]) && ($handle = fopen($run[1], 'r')))
-            {
+            if ($run[0] == "import" && isset($run[1]) && ($handle = fopen($run[1], 'r'))) {
                 $products = [];
                 $bundles = [];
                 $pi = 0;
                 $bi = 0;
 
-                while (($line = fgets($handle)) !== false)
-                {
+                while (($line = fgets($handle)) !== false) {
                     $row = explode("|", $line);
 
                     if ($row[1] == 'PRODUCT') {
@@ -69,8 +67,7 @@ class Products extends Command
 
                         $products[$pi] = $product_info;
                         $pi++;
-                    }
-                    elseif ($row[1] == 'BUNDLE') {
+                    } elseif ($row[1] == 'BUNDLE') {
                         $bundle_info['products'] = explode(",", $row[2]);
                         $bundle_info['info']['bsku'] = trim($row[0]);
 
@@ -80,15 +77,14 @@ class Products extends Command
                     //$output->writeln($line);
                 }
 
-                for($i = 0; $i < count($products); $i++) {
+                for ($i = 0; $i < count($products); $i++) {
                     $data->addProduct($data, $products[$i]);
                 }
 
-                foreach($bundles as $bundle) {
+                foreach ($bundles as $bundle) {
                     $data->addBundle($data, $bundle['info'], $bundle['products']);
                 }
-            }
-            elseif($run[0] == "show") {
+            } elseif ($run[0] == "show") {
                 // show product details
             }
 

@@ -38,7 +38,8 @@ class ProductData
         return $executed;
     }
 
-    function getProductBySKU($app, $psku) {
+    function getProductBySKU($app, $psku)
+    {
         if (!isset($psku)) {
             return false;
         }
@@ -55,7 +56,8 @@ class ProductData
         return $query;
     }
 
-    function getBundleBySKU($app, $bsku) {
+    function getBundleBySKU($app, $bsku)
+    {
         if (!isset($bsku)) {
             return false;
         }
@@ -93,7 +95,7 @@ class ProductData
         }
 
         try {
-            foreach($pskus as $p) {
+            foreach ($pskus as $p) {
                 $bundle_product['product_id'] = $this->getProductBySKU($app, $p)['id'];
                 $bundle_product['bundle_id'] = $this->getBundleBySKU($app, $bundle['bsku'])['id'];
 
