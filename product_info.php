@@ -107,15 +107,13 @@ class Products extends Command
 
                 $this->printProduct($product_details);
 
-            }
-            elseif ($run[0] == "showProductWithID" && isset($run[1])) {
+            } elseif ($run[0] == "showProductWithID" && isset($run[1])) {
                 $pid = $run[1];
                 $product_details = $data->getProductById($data, $pid);
 
                 $this->printProduct($product_details);
 
-            }
-            elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
+            } elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];
                 $bundle_details = $data->getBundleBySKU($data, $bsku);
 
