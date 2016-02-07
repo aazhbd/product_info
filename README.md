@@ -1,11 +1,11 @@
 # Product Info Manager
 
-CLI tool for product information management
+CLI tool for product information management.
 
 ### Requirement
 
 PHP 5.6
-Composer v1.0
+Composer 1.0.0-alpha11
 
 ### Usage
 
