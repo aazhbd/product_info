@@ -56,6 +56,23 @@ class ProductData
         return $query;
     }
 
+    function getProductById($app, $pid) {
+        if (!isset($pid)) {
+            return false;
+        }
+
+        try {
+            $query = $app->getDataManager()->from("products")
+                ->where(array("id" => $pid))
+                ->fetch();
+        } catch (\PDOException $ex) {
+            print("Error : " . $ex->getMessage());
+            return false;
+        }
+
+        return $query;
+    }
+
     function getBundleBySKU($app, $bsku)
     {
         if (!isset($bsku)) {

@@ -88,6 +88,7 @@ class Products extends Command
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
                 $product_details = $data->getProductBySKU($data, $psku);
+
                 print("------------+----------------------+--------\n");
                 print("        SKU |                 Name |  Price\n");
                 print("------------+----------------------+--------\n");
@@ -95,7 +96,7 @@ class Products extends Command
                     print("        INVALID PRODUCT SELECTED\n");
                 }
                 else {
-                    printf("%11s | %20s | %7s\n", $product_details['psku'],$product_details['pname'],$product_details['price']);
+                    printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'], $product_details['price']);
                 }
                 print("------------+----------------------+--------\n");
             }
@@ -104,7 +105,24 @@ class Products extends Command
                 $bundle_details = $data->getBundleBySKU($data, $bsku);
 
                 $product_details = $data->getProductsByBundleId($data, $bundle_details['id']);
-                var_dump($product_details);
+
+                print("------------+----------------------+--------\n");
+                print("        SKU |                 Name |  Price\n");
+                print("------------+----------------------+--------\n");
+                if(!$product_details) {
+                    print("        INVALID PRODUCT SELECTED\n");
+                }
+                else {
+                    printf("%11s | %20s | %7s\n", $bundle_details['bsku'], " ", " ");
+                    $psum = 0;
+                    foreach($product_details as $pd) {
+                        $pdetails = $data->getProductById($data, $pd['product_id']);
+                        printf("%11s | %20s | %7s\n", " ", $pdetails['pname'], " ");
+                        $psum += $pdetails['price'];
+                    }
+                    printf("%11s | %20s | %7s\n", " ", " ", $psum);
+                }
+                print("------------+----------------------+--------\n");
             }
 
         } else {
