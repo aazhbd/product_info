@@ -18,7 +18,7 @@ class Products extends Command
             ->addArgument(
                 'run',
                 InputArgument::IS_ARRAY,
-                'Enter product number: '
+                'Run Product Manager'
             )
             ->addOption(
                 'createtables',
@@ -84,8 +84,10 @@ class Products extends Command
                 foreach ($bundles as $bundle) {
                     $data->addBundle($data, $bundle['info'], $bundle['products']);
                 }
-            } elseif ($run[0] == "show") {
-                // show product details
+            } elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
+                $psku = $run[1];
+                $product_details = $data->getProductBySKU($data, $psku);
+                var_dump($product_details);
             }
 
         } else {
