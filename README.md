@@ -8,35 +8,36 @@ PHP 5.6
 
 ## Usage
 
-To initialize the project, the packages have to be installed,
+- To initialize the project, the packages have to be installed,
 
 ```
 $ composer install
 ```
 
-For simplicity, SQLite3 connection is set. To Creating database tables,
+ - For simplicity, SQLite3 connection is set. To Creating database tables,
 
 ```
 $ php app.php product --createtables
 ```
 
-To import product information from files,
+ - To import product information from files,
 
 ```
 $ php app.php product import <file_path>
 ```
 
-To view product details,
+ - To view product details,
 
 ```
 $ php app.php product showProductWithSKU <product_SKU>
 ```
 
-To view bundle details,
+ - To view bundle details,
 
 ```
 $ php app.php product showBundleWithSKU <bundle_SKU>
 ```
+
 
 ## Examples
 
