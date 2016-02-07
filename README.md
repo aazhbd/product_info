@@ -6,6 +6,32 @@ CLI tool for product information management
 
 PHP 5.6
 
+## Usage
+
+For simplicity, SQLite3 connection is set. To Creating database tables,
+
+```
+$ php app.php product --createtables
+```
+
+To import product information from files,
+
+```
+$ php app.php product import <file_path>
+```
+
+To view product details,
+
+```
+$ php app.php product showProductWithSKU <product_SKU>
+```
+
+To view bundle details,
+
+```
+$ php app.php product showBundleWithSKU <bundle_SKU>
+```
+
 ## Examples
 
 ```
