@@ -2,6 +2,7 @@
 
 namespace product_info;
 
+use product_data\ProductData;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,7 +31,7 @@ class Products extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $data = new \product_data\ProductData();
+        $data = new ProductData();
 
         if ($input->getOption('createtables')) {
             $data->getDataManager()->getPDO()->exec("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, psku TEXT, pname TEXT, price REAL, quantity INTEGER)");
