@@ -106,6 +106,7 @@ class Products extends Command
                 print("Total non-sellable products : " . $total_non_sellable . "\n");
                 print("Total PRODUCT type items : " . $total_product_count . "\n");
                 print("Total BUNDLE type items : " . $total_bundle_count . "\n");
+                print("Total Invalid Bundles : " . $data->countInvalidBundles($data) . "\n");
             }
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
@@ -121,6 +122,7 @@ class Products extends Command
                     printf("%11s | %20s | %7s\n", $product_details['psku'], $product_details['pname'], $product_details['price']);
                 }
                 print("------------+----------------------+--------\n");
+
             }
             elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];

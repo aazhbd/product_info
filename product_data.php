@@ -91,6 +91,22 @@ class ProductData
         return $query;
     }
 
+    function countInvalidBundles($app) {
+        try {
+            $query = $app->getDataManager()->from("products")
+                ->leftJoin('bundle_product ON products.id = bundle_product.product_id')
+                ->where(array("products.quantity" => 0))
+                ->select(null)
+                ->select("count(bundle_product.bundle_id) as count_invalid_bundle")
+                ->fetchAll();
+        } catch (\PDOException $ex) {
+            print("Error : " . $ex->getMessage());
+            return false;
+        }
+
+        return $query[0]["count_invalid_bundle"];
+    }
+
     function addBundle($app, $bundle, $pskus)
     {
         if (empty($bundle)) {
