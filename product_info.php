@@ -59,6 +59,7 @@ class Products extends Command
                 $total_sellable = 0;
                 $total_non_sellable = 0;
                 $total_product_count = 0;
+                $total_bundle_count = 0;
 
                 while (($line = fgets($handle)) !== false) {
                     $row = explode("|", $line);
@@ -81,6 +82,7 @@ class Products extends Command
                         $products[$pi] = $product_info;
                         $pi++;
                     } elseif ($row[1] == 'BUNDLE') {
+                        $total_bundle_count++;
                         $bundle_info['products'] = explode(",", $row[2]);
                         $bundle_info['info']['bsku'] = trim($row[0]);
 
@@ -103,6 +105,7 @@ class Products extends Command
                 print("Total sellable products : " . $total_sellable . "\n");
                 print("Total non-sellable products : " . $total_non_sellable . "\n");
                 print("Total PRODUCT type items : " . $total_product_count . "\n");
+                print("Total BUNDLE type items : " . $total_bundle_count . "\n");
             }
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
