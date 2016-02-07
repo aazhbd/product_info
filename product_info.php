@@ -40,6 +40,7 @@ class Products extends Command
         }
 
         $run = $input->getArgument('run');
+
         if (isset($run[0])) {
             $text = 'Operation: ' . $run[0];
 
