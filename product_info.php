@@ -57,6 +57,7 @@ class Products extends Command
 
                 $total_items = 0;
                 $total_sellable = 0;
+                $total_non_sellable = 0;
 
                 while (($line = fgets($handle)) !== false) {
                     $row = explode("|", $line);
@@ -70,6 +71,9 @@ class Products extends Command
 
                         if(intval($product_info['quantity']) > 0) {
                             $total_sellable++;
+                        }
+                        else {
+                            $total_non_sellable++;
                         }
 
                         $products[$pi] = $product_info;
@@ -95,6 +99,7 @@ class Products extends Command
 
                 print("Total read items : " . $total_items . "\n");
                 print("Total sellable products : " . $total_sellable . "\n");
+                print("Total non-sellable products : " . $total_non_sellable . "\n");
             }
             elseif ($run[0] == "showProductWithSKU" && isset($run[1])) {
                 $psku = $run[1];
