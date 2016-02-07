@@ -93,7 +93,9 @@ class Products extends Command
             elseif ($run[0] == "showBundleWithSKU" && isset($run[1])) {
                 $bsku = $run[1];
                 $bundle_details = $data->getBundleBySKU($data, $bsku);
-                var_dump($bundle_details);
+
+                $product_details = $data->getProductsByBundleId($data, $bundle_details['id']);
+                var_dump($product_details);
             }
 
         } else {

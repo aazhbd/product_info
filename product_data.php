@@ -105,6 +105,25 @@ class ProductData
         return $executed;
     }
 
+    function getProductsByBundleId($app, $bundle_id)
+    {
+        if (!isset($bundle_id)) {
+            return false;
+        }
+
+        try {
+            $query = $app->getDataManager()->from("bundle_product")
+                ->leftJoin('products ON products.id = bundle_product.product_id')
+                ->where(array("bundle_product.bundle_id" => $bundle_id))
+                ->fetchAll();
+        } catch (\PDOException $ex) {
+            print("Error : " . $ex->getMessage());
+            return false;
+        }
+
+        return $query;
+    }
+
     /**
      * @return FluentPDO
      */
