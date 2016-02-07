@@ -15,7 +15,7 @@ class Products extends Command
     {
         $this
             ->setName('product')
-            ->setDescription('Product Info')
+            ->setDescription('CLI tool for product information management.')
             ->addArgument(
                 'run',
                 InputArgument::IS_ARRAY,
